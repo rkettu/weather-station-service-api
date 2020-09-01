@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
-  title: user-details
+  title: weather-data
   version: '1.0'
+  description: 'Each user can post their own sensor data. Anyone can read sensor data. '
 servers:
   - url: 'http://localhost:3000'
 paths:
@@ -66,6 +67,7 @@ paths:
       tags: []
       responses: {}
       operationId: get-sensors
+      description: ''
     post:
       summary: ''
       operationId: post-sensors
@@ -122,7 +124,7 @@ paths:
       tags: []
       responses: {}
       operationId: get-sensor-records
-      description: reading sensor records (login NOT required)
+      description: Reading sensor records (login NOT required)
       requestBody:
         content:
           application/json:
@@ -137,7 +139,7 @@ paths:
                   type: string
                 location_longitude:
                   type: string
-                sensortype_name:
+                sensortype_id:
                   type: string
     post:
       summary: ''
@@ -145,7 +147,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: posting a sensor record (login required)
+      description: Posting a sensor record (login required)
       requestBody:
         content:
           application/json:
