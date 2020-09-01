@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: user-details
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /users:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-users
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+      description: Creating an user in the system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                name:
+                  type: string
+                birthdate:
+                  type: string
+                address:
+                  type: string
+                city:
+                  type: string
+                country:
+                  type: string
+                email:
+                  type: string
+              required:
+                - username
+                - password
+                - name
+                - birthdate
+                - address
+                - city
+                - country
+                - email
+            examples:
+              example-1:
+                value:
+                  username: string
+                  password: string
+                  name: string
+                  birthdate: string
+                  address: string
+                  city: string
+                  country: string
+                  email: string
+  /sensors:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-sensors
+    post:
+      summary: ''
+      operationId: post-sensors
+      responses:
+        '200':
+          description: OK
+      description: Adding a new sensor to the system (login required)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sensortype_id:
+                  type: string
+                user_id:
+                  type: string
+                description:
+                  type: string
+                devicetype_id:
+                  type: string
+              required:
+                - sensortype_id
+                - user_id
+  /sensortypes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+      operationId: get-sensortypes
+      description: Receive name of sensor based on id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sensor_name:
+                  type: string
+              required:
+                - sensor_name
+            examples:
+              example-1:
+                value: string
+              example-2:
+                value: {}
+  /sensor-records:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-sensor-records
+      description: reading sensor records (login NOT required)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sensor_value:
+                  type: string
+                timestamp:
+                  type: string
+                location_latitude:
+                  type: string
+                location_longitude:
+                  type: string
+                sensortype_name:
+                  type: string
+    post:
+      summary: ''
+      operationId: post-sensor-records
+      responses:
+        '200':
+          description: OK
+      description: posting a sensor record (login required)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sensortype_id:
+                  type: string
+                location_latitude:
+                  type: string
+                location_longitude:
+                  type: string
+                sensor_value:
+                  type: string
+                timestamp:
+                  type: string
+              required:
+                - sensortype_id
+                - location_latitude
+                - location_longitude
+                - sensor_value
+                - timestamp
+  /devicetypes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-devicetypes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+                - name
+      description: 'Get type of device based on id (Rpi 3.0, Arduino, etc.)'
+components:
+  schemas: {}
